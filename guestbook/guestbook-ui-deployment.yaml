@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: guestbook-ui
-        image: paulbouwer/hello-kubernetes:1.7
+        image: nginxdemos/hello
         ports:
         - containerPort: 80
