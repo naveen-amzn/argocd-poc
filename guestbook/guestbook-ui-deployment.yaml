@@ -14,7 +14,7 @@ spec:
         app: guestbook-ui
     spec:
       containers:
-      - name: guestbook-ui
+      - name: guestbook-ui-test
         image: nginxdemos/hello
         ports:
         - containerPort: 80
