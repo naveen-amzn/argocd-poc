@@ -1,26 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}
+  name: {{ include "demo-app.fullname" . }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ .Release.Name }}
+      app: {{ .Chart.Name }}
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}
+        app: {{ .Chart.Name }}
     spec:
       containers:
-        - name: {{ .Release.Name }}
+        - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          env:
-            - name: MESSAGE
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ .Release.Name }}-config
-                  key: message
           ports:
             - containerPort: 80
+          env:
+            - name: CONFIG_MESSAGE
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "demo-app.fullname" . }}
+                  key: welcome
+            - name: SECRET_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "demo-app.fullname" . }}
+                  key: username
