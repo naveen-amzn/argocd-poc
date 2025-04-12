@@ -1,0 +1,10 @@
+replicaCount: 1
+
+image:
+  tag: "1.21"
+
+ingress:
+  host: stage.demo-app.local
+
+config:
+  message: "Welcome to staging!"

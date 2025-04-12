@@ -1,0 +1,10 @@
+replicaCount: 3
+
+image:
+  tag: "1.25"
+
+ingress:
+  host: prod.demo-app.local
+
+config:
+  message: "Welcome to production!"
