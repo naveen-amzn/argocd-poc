@@ -1,10 +1,18 @@
-replicaCount: 3
+replicaCount: 2
 
 image:
+  repository: nginx
   tag: "1.25"
+  pullPolicy: IfNotPresent
 
-ingress:
-  host: prod.demo-app.local
+service:
+  type: LoadBalancer
+  port: 80
 
-config:
-  message: "Welcome to production!"
+configData:
+  welcome: "Production environment"
+
+secretData:
+  username: "prod-user"
+  password: "prod-pass"
+
