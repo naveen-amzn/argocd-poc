@@ -2,18 +2,16 @@ replicaCount: 2
 
 image:
   repository: nginx
-  tag: latest
+  tag: "1.25"
   pullPolicy: IfNotPresent
 
 service:
-  type: ClusterIP
+  type: LoadBalancer
   port: 80
 
-ingress:
-  enabled: true
-  host: demo-app.local
+configData:
+  welcome: "Hello from ConfigMap!"
 
-resources: {}
-
-config:
-  message: "Hello from base config!"
+secretData:
+  username: "admin"
+  password: "password"
