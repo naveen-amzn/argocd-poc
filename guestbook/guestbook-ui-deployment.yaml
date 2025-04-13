@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: guestbook-ui
-        image: nginxdemos/hello:latest:latest
+        image: nginxdemos/hello
         ports:
         - containerPort: 80
 
