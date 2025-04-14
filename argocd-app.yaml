@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: test-app
+  namespace: argocd  # Argo CD should be installed in this namespace
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/pradippandey29/argocd-poc.git
+    targetRevision: HEAD
+    path: guestbook #path/to/helm/or/kustomize/manifests
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+
+# kubectl apply -f argocd-app.yaml  
